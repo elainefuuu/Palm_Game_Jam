@@ -3,7 +3,7 @@ A website game that focuses on educating the public about sustainability in the 
 
 Link: https://es-di-pea-palm-game-jam.netlify.app
 
-Team Name: Es Di Pea\
+Team Name: Es Di Pea
 
 Team Members:\
 Seow Leng\
