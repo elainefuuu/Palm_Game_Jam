@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <link rel="stylesheet" href="/dist/index.css" />
+    <title>Es Di Pea</title>
+    <script src="/dist/vendors/moment.min.js"></script>
+    <script src="/dist/index.js"></script>
+  </head>
+  <body>
+    <audio loop id="background-audio">
+      <source
+        src="/assets/sounds/bg-sound.mp3"
+      />
+    </audio>
+    <audio id="click-audio">
+      <source
+        src="/assets/sounds/click-sound.wav"
+      />
+    </audio>
+    <div class="outer-container">
+
+      <div class="background-image" style="background: url('https://es-di-pea.s3-ap-southeast-1.amazonaws.com/bg.gif'); background-size: contain; background-position: top; background-repeat: no-repeat;">
+        <span class="current-time"></span>
+        <span class="new-game restart-game">New Game</span>
+        <div id="modal-gameover" class="modal">
+          <div class="modal-content">
+            <span class="modal-title">Game Over!</span>
+            <p class="modal-description">
+              Your fame has dropped below -100, which means you have performed too many unsustainable decisions.
+            </p>
+            <div class="button-container">
+              <div class="button m-0 restart-game">Play Again</div>
+            </div>
+          </div>
+        </div>
+        <div id="modal-message" class="modal">
+          <div class="modal-content">
+            <span class="modal-title" id="modal-message-title"></span>
+            <p class="modal-description" id="modal-message-description">
+            </p>
+            <div class="button-container">
+              <div class="button m-0" id="modal-message-close">Okay</div>
+            </div>
+          </div>
+        </div>
+        <div id="modal-introduction" class="modal">
+          <div class="modal-content">
+            <span class="close ">&times;</span>
+            <span class="modal-title">Es Di Pea</span>
+            <p class="modal-description">
+              Tip: Sustainable decisions are always more worth it in the long run, no matter what.
+            </p>
+            <div class="button-container">
+              <div class="button m-0 close ">Start Playing</div>
+            </div>
+          </div>
+        </div>
+        <div id="modal-404" class="modal">
+          <div class="modal-content">
+            <span class="close ">&times;</span>
+            <span class="modal-title">Sorry</span>
+            <p class="modal-description">
+              This feature is still under construction...
+            </p>
+          </div>
+        </div>
+        <div id="wildCard" class="modal">
+          <div class="modal-content">
+            <span class="modal-title">Wildcard Alert!</span>
+            <div class="wildCard-content">
+              <p class="modal-description" id="wildCard-description"></p>
+              <div class="wildCard-stats">
+                <p class="modal-description" id="wildCard-money"></p>
+                <p class="modal-description" id="wildCard-fame"></p>
+              </div>
+              <p class="modal-description" id="wildCard-no-money">
+                You don't have enough money.
+              </p>
+            </div>
+  
+            <div class="button-container">
+              <span class="button " id="wildCard-okay">Okay</span>
+              <span class="button " id="wildCard-yes">Yes</span>
+              <span class="button " id="wildCard-no">No</span>
+            </div>
+          </div>
+        </div>
+        <div class="nav-container">
+          <img class="nav-element " id="nav-estate" src="/assets/images/estate.png"></img>
+          <img class="nav-element " id="nav-refinery" src="/assets/images/refinery.png"></img>
+          <img class="nav-element " id="nav-factory" src="/assets/images/factory.png"></img>
+          <img class="nav-element " id="nav-city" src="/assets/images/city.png"></img>
+        </div>
+        <div class="palm-trees-container">
+          <div class="palm-trees-row">
+            <img
+              src="/assets/images/palm-tree.png"
+              class="palm-tree"
+              id="palm-1"
+            />
+            <img
+              src="/assets/images/palm-tree.png"
+              class="palm-tree"
+              id="palm-2"
+            />
+            <img
+              src="/assets/images/palm-tree.png"
+              class="palm-tree"
+              id="palm-3"
+            />
+          </div>
+          <div class="palm-trees-row">
+            <img
+              src="/assets/images/palm-tree.png"
+              class="palm-tree"
+              id="palm-4"
+            />
+            <img
+              src="/assets/images/palm-tree.png"
+              class="palm-tree"
+              id="palm-5"
+            />
+            <img
+              src="/assets/images/palm-tree.png"
+              class="palm-tree"
+              id="palm-6"
+            />
+          </div>
+          <div class="palm-trees-row">
+            <img
+              src="/assets/images/palm-tree.png"
+              class="palm-tree"
+              id="palm-7"
+            />
+            <img
+              src="/assets/images/palm-tree.png"
+              class="palm-tree"
+              id="palm-8"
+            />
+            <img
+              src="/assets/images/palm-tree.png"
+              class="palm-tree"
+              id="palm-9"
+            />
+          </div>
+        </div>
+  
+        <div class="extras-container">
+          <img class="extras-element " id="extras-medal" src="/assets/images/badges.png"></img>
+          <img class="extras-element " id="extras-mail" src="/assets/images/wildCards.png"></img>
+        </div>
+  
+        <div class="top-container">
+          <!-- <div class="date-container">
+            <span>Date</span>
+          </div> -->
+          <div class="currency-container">
+            <!-- <span class="currency-element" id="currency-money">Money: $0</span>
+            <span class="currency-element" id="currency-fame">Fame: 0</span> -->
+            <div class="currency-element-container">
+              <img src="/assets/images/bar_money.png" alt="" class="currency-element-image" >
+              <span class="currency-element-data" id="currency-money">$100</span>
+            </div>
+            <div class="currency-element-container">
+              <img src="/assets/images/bar_fame.png" alt="" class="currency-element-image" >
+              <span class="currency-element-data" id="currency-fame">0</span>
+            </div>
+          </div>
+          <img
+            src="/assets/images/settings.png"
+            class="settings-button top-element "
+            alt=""
+          />
+        </div>
+  
+        <div class="actions-container">
+          <span class="actions-button " id="actions-add-trees">Add Tree</span>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
